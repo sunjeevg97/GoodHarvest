@@ -5,5 +5,11 @@ $theme-colors: (
   "info": #B7D8D6
 );
 
+html,body{
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
 
 @import '~bootstrap/scss/bootstrap.scss';

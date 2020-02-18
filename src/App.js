@@ -6,14 +6,12 @@ import { Landing } from './Landing';
 import { SignIn } from './SignIn';
 import { SignUp } from './SignUp';
 import { Venues } from './Venues';
-import { Layout } from './components/Layout';
 import { Navigation } from './components/Navigation';
+
 function App() {
   return (
     <React.Fragment>
-      
       <Router>
-        <Navigation />
         <Switch>
         <Route exact path="/" component={Landing} />
         <Route path="/venues" component={Venues} />

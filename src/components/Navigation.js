@@ -6,12 +6,11 @@ import Button from 'react-bootstrap/Button';
 
 
 export const Navigation = () => (
-    <Navbar className="fixed-top">
-        <Navbar.Brand href="/">Luau</Navbar.Brand>
+    <Navbar className="fixed-top" expand='lg'>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="ml-auto">
-            <Button variant='outline-primary'><Link to='/signin'>Sign In</Link></Button>
+            <Nav.Item><Nav.Link><Link to="/signin">SignIn</Link></Nav.Link></Nav.Item>
          </Nav>
             </Navbar.Collapse>
     </Navbar>

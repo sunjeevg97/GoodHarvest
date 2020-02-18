@@ -6,9 +6,14 @@ import Jumbotron from 'react-bootstrap/Jumbotron';
 import { Layout } from './components/Layout';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
+import { Navigation } from './components/Navigation';
+import $ from 'jquery';
+
+var wH = $(window).height();
+
 const Background  = styled.img`
     width:100%;
-    height:100%;
+    height:${wH};
 `;
 
 const Styles = styled.div`
@@ -18,40 +23,39 @@ const Styles = styled.div`
     margin-left:50px;
 `;
 
+
 export const Landing = () => (
     <React.Fragment>
         <Background src={ bgImg } />
-<Styles>
-    <Layout>
-    <Jumbotron>
-    <Jumbotron fluid>
-  <Container>
-    <h1>Fluid jumbotron</h1>
-    <Form>
-  <Form.Group controlId="formBasicEmail">
-    <Form.Label>Email address</Form.Label>
-    <Form.Control type="email" placeholder="Enter email" />
-    <Form.Text className="text-muted">
-      We'll never share your email with anyone else.
-    </Form.Text>
-  </Form.Group>
+        <Layout>
+        <Navigation />
+        </Layout>
+            <Styles>
+            <Layout>
+                    <Jumbotron fluid>
+                        <Container>
+                            <h1>Fluid jumbotron</h1>
+                                <Form>
+                                    <Form.Group controlId="formBasicEmail">
+                                        <Form.Label>Email address</Form.Label>
+                                        <Form.Control type="email" placeholder="Enter email" />
+                                        <Form.Text className="text-muted">
+                                            We'll never share your email with anyone else.
+                                        </Form.Text>
+                                    </Form.Group>
 
-  <Form.Group controlId="formBasicPassword">
-    <Form.Label>Password</Form.Label>
-    <Form.Control type="password" placeholder="Password" />
-  </Form.Group>
-  <Form.Group controlId="formBasicCheckbox">
-    <Form.Check type="checkbox" label="Check me out" />
-  </Form.Group>
-  <Button variant="outline-primary" type="submit">
-    Submit
-  </Button>
-</Form>
-  </Container>
-</Jumbotron>
-</Jumbotron>
-    </Layout>
-</Styles>
-    </React.Fragment>
+                                    <Form.Group controlId="formBasicPassword">
+                                        <Form.Label>Password</Form.Label>
+                                        <Form.Control type="password" placeholder="Password" />
+                                    </Form.Group>
+                                        <Button variant="outline-primary" type="submit">
+                                            Submit
+                                        </Button>
+                                    </Form>
+                            </Container>
+                        </Jumbotron>
+                </Layout>
+                </Styles>
+        </React.Fragment>
     
 );
