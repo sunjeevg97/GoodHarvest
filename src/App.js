@@ -1,3 +1,4 @@
+import firebase from 'firebase'
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import './custom.scss';
@@ -19,7 +20,7 @@ function App() {
         <Route path="/signup" component={SignUp} />
         </Switch>
         </Router>
-        
+
     </React.Fragment>
   );
 }

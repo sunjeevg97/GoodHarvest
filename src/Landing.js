@@ -14,9 +14,10 @@ import Dropdown from 'react-bootstrap/Dropdown';
 import FormControl from 'react-bootstrap/FormControl';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCalendarAlt } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCalendarAlt } from '@fortawesome/free-solid-svg-icons';
 import $ from 'jquery';
+import firebase from 'firebase';
 
 
 var wH = $(window).height();
@@ -36,7 +37,7 @@ const Styles = styled.div`
         border-style: solid;
         border-color:#EEF3DB;
     }
-    
+
     .h1{
         width:auto;
     }
@@ -55,7 +56,7 @@ const Header = styled.div`
     }
 `;
 const BgStyles = styled.div`
-    
+
         z-index: 0;
         height: 100%;
         width: 100%;
@@ -90,7 +91,7 @@ export const Landing = () => (
                                         <Form.Control placeholder="Number of People" />
                                     </Form.Group>
                                     </Col>
-                                    </Row> 
+                                    </Row>
 
                                     <Row>
                                         <Col>
@@ -114,7 +115,7 @@ export const Landing = () => (
                                             <ReactCalendar />
                                         </DropdownButton>
                                         </InputGroup>
-                                    
+
                                     </Form.Group>
                                     </Col>
                                     <Col>
@@ -129,5 +130,5 @@ export const Landing = () => (
                     </Jumbotron>
             </Styles>
         </React.Fragment>
-    
+
 );
