@@ -17,7 +17,7 @@ import Col from 'react-bootstrap/Col';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCalendarAlt } from '@fortawesome/free-solid-svg-icons';
 import $ from 'jquery';
-import firebase from 'firebase';
+import firebase from './firebase';
 
 
 var wH = $(window).height();

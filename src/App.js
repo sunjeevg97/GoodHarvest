@@ -1,4 +1,4 @@
-import firebase from 'firebase'
+import firebase from './firebase'
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import './custom.scss';
