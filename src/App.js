@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import './custom.scss';
 
-import { Landing } from './Landing';
+import { FirstInput } from './FirstInput';
 import { SignIn } from './SignIn';
 import { SignUp } from './SignUp';
 import { Venues } from './Venues';
@@ -14,7 +14,7 @@ function App() {
     <React.Fragment>
       <Router>
         <Switch>
-        <Route exact path="/" component={Landing} />
+        <Route exact path="/" component={FirstInput} />
         <Route path="/venues" component={Venues} />
         <Route path="/signin" component={SignIn} />
         <Route path="/signup" component={SignUp} />
