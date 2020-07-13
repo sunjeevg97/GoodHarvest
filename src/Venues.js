@@ -2,49 +2,67 @@ import React, {useState} from 'react';
 import Component from 'react';
 import { db } from './firebase';
 import Card from 'react-bootstrap/Card';
+import CardDeck from 'react-bootstrap/CardDeck'
 import Button from 'react-bootstrap/Button';
+import Row from 'react-bootstrap/Row';
 export class Venues extends React.Component{
     constructor(props){
         super(props);
 
         this.state = {
-            venues: []
+            venue_data:[]
         };
 
     }  
 
     async componentDidMount() {
+        let venues = [];
         let venuesRef = db.collection('venues')
         let locationRef = await venuesRef.where('location', '==', this.props.location.state.location).get();
         for (const venue of locationRef.docs){
             let name = venue.get('name');
             let location = venue.get('location');
             let maxcap = venue.get('maxcap');
-            this.state.venues[venue.id] = [name, location, maxcap];
+            venues.push({
+                id: venue.id,
+                n: name,
+                loc: location,
+                cap: maxcap
+            });
+
+            this.setState({venue_data: venues});
         }
+
+        console.log(this.state.venue_data);
       }
        
 
     
 
     render(){
-       console.log(this.state.venues);
-        for(const v of this.state.venues){
-            return(
+       console.log(this.state.venue_data);
+            return (
                 <div>
-                    <Card style={{ width: '18rem' }}>
+                    <Row>
+                    </Row>
+                    <Row>
+                    <CardDeck>
+                    {this.state.venue_data.map((venue,index) => (
+
+                        <Card key = {venue.id} border = "primary" style={{ width: '18rem' }}>
                         <Card.Img variant="top" src="holder.js/100px180" />
                         <Card.Body>
-                        <Card.Title>Card Title</Card.Title>
-                    <Card.Text>
-                        Some quick example text to build on the card title and make up the bulk of
-                        the card's content.
-                    </Card.Text>
-                        <Button variant="primary">Go somewhere</Button>
+                          <Card.Title>{venue.n}</Card.Title>
+                          <Card.Text>
+                            Location: {venue.loc}
+                            Max Capacity: {venue.cap}
+                          </Card.Text>
+                          <Button variant="primary">Go somewhere</Button>
                         </Card.Body>
-                    </Card>
-                </div>
-            );
+                      </Card>
+                    ))}
+                    </CardDeck>
+                    </Row>
+                </div>);
         }
-    }
 }
