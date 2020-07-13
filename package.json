@@ -12,6 +12,7 @@
     "bootstrap": "^4.4.1",
     "file-loader": "^5.0.2",
     "firebase": "^7.9.0",
+    "google-maps-react": "^2.0.6",
     "jquery": "^3.4.1",
     "node-sass": "^4.13.1",
     "react": "^16.12.0",

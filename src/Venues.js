@@ -5,6 +5,10 @@ import Card from 'react-bootstrap/Card';
 import CardDeck from 'react-bootstrap/CardDeck'
 import Button from 'react-bootstrap/Button';
 import Row from 'react-bootstrap/Row';
+import MapView from './components/MapView';
+import Container from 'react-bootstrap/Container';
+import Col from 'react-bootstrap/Col';
+
 export class Venues extends React.Component{
     constructor(props){
         super(props);
@@ -43,26 +47,34 @@ export class Venues extends React.Component{
        console.log(this.state.venue_data);
             return (
                 <div>
-                    <Row>
-                    </Row>
-                    <Row>
-                    <CardDeck>
-                    {this.state.venue_data.map((venue,index) => (
+                    <Container fluid >
+                        <Row>
+                        
+                                <MapView />
+                        </Row>
 
-                        <Card key = {venue.id} border = "primary" style={{ width: '18rem' }}>
-                        <Card.Img variant="top" src="holder.js/100px180" />
-                        <Card.Body>
-                          <Card.Title>{venue.n}</Card.Title>
-                          <Card.Text>
-                            Location: {venue.loc}
-                            Max Capacity: {venue.cap}
-                          </Card.Text>
-                          <Button variant="primary">Go somewhere</Button>
-                        </Card.Body>
-                      </Card>
-                    ))}
-                    </CardDeck>
+                        <Row>
+                        <Col>
+                        <CardDeck>
+                        {this.state.venue_data.map((venue,index) => (
+
+                            <Card key = {venue.id} border = "primary" style={{ width: '18rem' }}>
+                                <Card.Img variant="top" src="holder.js/100px180" />
+                                <Card.Body>
+                                <Card.Title>{venue.n}</Card.Title>
+                                <Card.Text>
+                                    Location: {venue.loc}
+                                    Max Capacity: {venue.cap}
+                                </Card.Text>
+                                <Button variant="primary">Go somewhere</Button>
+                                </Card.Body>
+                            </Card>
+                        ))}
+                        </CardDeck>
+                        </Col>
                     </Row>
+                    </Container>
                 </div>);
         }
 }
+
