@@ -9,6 +9,7 @@ import MapView from './components/MapView';
 import Container from 'react-bootstrap/Container';
 import Col from 'react-bootstrap/Col';
 import styled from 'styled-components';
+import Badge from 'react-bootstrap/Badge';
 
 const Wrapper = styled.section `
     height:100vh;
@@ -77,17 +78,22 @@ export class Venues extends React.Component{
                           <VenueSection>
                             <CardDeck>
                                 {this.state.venue_data.map((venue,index) => (
-                                  
                                 <Card key = {venue.id} border = "primary" style={{ width: '18rem' }}>
                                     <Card.Img variant="top" src="holder.js/100px180" />
                                     <Card.Body>
                                     <Card.Title>{venue.n}</Card.Title>
                                     <Card.Text>
-                                        Location: {venue.loc}{`\n`}
-                                        Max Capacity: {venue.cap}{`\n`}
-                                        Food Type: { venue.food_type.map((i) => (`${i} `))} 
+                                        <ul className="list-unstyled">
+                                        <li><small>Location: {venue.loc}</small></li>
+                                        <li><small>Max Capacity: {venue.cap}</small></li>
+                                        <li><small>Cuisine:{venue.food_type.map((food, x) => (<Badge className="ml-1" variant="secondary">{food}</Badge>))}</small></li>
+                                        </ul>
                                     </Card.Text>
-                                    <Button variant="primary">Book Your Luau</Button>
+                                    <Row>
+                                        <Col>
+                                        <Button variant="primary">Book Your Luau</Button>
+                                        </Col>
+                                    </Row>
                                     </Card.Body>
                                 </Card>
                             ))}
