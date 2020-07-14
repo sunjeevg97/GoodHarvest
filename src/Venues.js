@@ -8,6 +8,22 @@ import Row from 'react-bootstrap/Row';
 import MapView from './components/MapView';
 import Container from 'react-bootstrap/Container';
 import Col from 'react-bootstrap/Col';
+import styled from 'styled-components';
+
+const Wrapper = styled.section `
+    height:100vh;
+    width:100%;
+
+`;
+const MapSection = styled.section`
+    height: 100vh;
+    width:100%;
+`;
+const VenueSection = styled.section `
+    height:100vh;
+    width:100%;
+    padding-top:30px;
+`;
 
 export class Venues extends React.Component{
     constructor(props){
@@ -27,11 +43,13 @@ export class Venues extends React.Component{
             let name = venue.get('name');
             let location = venue.get('location');
             let maxcap = venue.get('maxcap');
+            let cuisines = venue.get('cuisines')
             venues.push({
                 id: venue.id,
                 n: name,
                 loc: location,
-                cap: maxcap
+                cap: maxcap,
+                food_type: cuisines
             });
 
             this.setState({venue_data: venues});
@@ -46,35 +64,40 @@ export class Venues extends React.Component{
     render(){
        console.log(this.state.venue_data);
             return (
-                <div>
-                    <Container fluid >
-                        <Row>
-                        
-                                <MapView />
-                        </Row>
-
-                        <Row>
-                        <Col>
-                        <CardDeck>
-                        {this.state.venue_data.map((venue,index) => (
-
-                            <Card key = {venue.id} border = "primary" style={{ width: '18rem' }}>
-                                <Card.Img variant="top" src="holder.js/100px180" />
-                                <Card.Body>
-                                <Card.Title>{venue.n}</Card.Title>
-                                <Card.Text>
-                                    Location: {venue.loc}
-                                    Max Capacity: {venue.cap}
-                                </Card.Text>
-                                <Button variant="primary">Go somewhere</Button>
-                                </Card.Body>
-                            </Card>
-                        ))}
-                        </CardDeck>
+                <Wrapper>
+                      <Row>
+                        <Col md='6'>
+                            <MapSection>
+                                <MapView/>
+                            </MapSection>
                         </Col>
-                    </Row>
-                    </Container>
-                </div>);
+
+                        <Col md='6'>
+                        <Container>
+                          <VenueSection>
+                            <CardDeck>
+                                {this.state.venue_data.map((venue,index) => (
+                                  
+                                <Card key = {venue.id} border = "primary" style={{ width: '18rem' }}>
+                                    <Card.Img variant="top" src="holder.js/100px180" />
+                                    <Card.Body>
+                                    <Card.Title>{venue.n}</Card.Title>
+                                    <Card.Text>
+                                        Location: {venue.loc}{`\n`}
+                                        Max Capacity: {venue.cap}{`\n`}
+                                        Food Type: { venue.food_type.map((i) => (`${i} `))} 
+                                    </Card.Text>
+                                    <Button variant="primary">Book Your Luau</Button>
+                                    </Card.Body>
+                                </Card>
+                            ))}
+                            </CardDeck>
+                            </VenueSection>
+                            </Container>
+                        </Col>
+                        </Row>
+                </Wrapper>
+                );
         }
 }
 
