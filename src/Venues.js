@@ -74,29 +74,31 @@ export class Venues extends React.Component{
                         </Col>
 
                         <Col md='6'>
-                        <Container>
+                        <Container className="overflow-auto">
                           <VenueSection>
                             <CardDeck>
+                                <Row className='p-3'>
                                 {this.state.venue_data.map((venue,index) => (
-                                <Card key = {venue.id} border = "primary" style={{ width: '18rem' }}>
-                                    <Card.Img variant="top" src="holder.js/100px180" />
+                                    <Col>
+                                    <br />
+                                <Card key = {venue.id} border = "primary" style={{width: '18rem' }}>
+                                    <Card.Img variant="top" src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2767&q=80" />
                                     <Card.Body>
                                     <Card.Title>{venue.n}</Card.Title>
                                     <Card.Text>
                                         <ul className="list-unstyled">
                                         <li><small>Location: {venue.loc}</small></li>
                                         <li><small>Max Capacity: {venue.cap}</small></li>
-                                        <li><small>Cuisine:{venue.food_type.map((food, x) => (<Badge className="ml-1" variant="secondary">{food}</Badge>))}</small></li>
+                                        <li><small>Cuisine:{venue.food_type.map((food, x) => (<Badge className="ml-1" variant="dark">{food}</Badge>))}</small></li>
                                         </ul>
                                     </Card.Text>
-                                    <Row>
-                                        <Col>
                                         <Button variant="primary">Book Your Luau</Button>
-                                        </Col>
-                                    </Row>
+                                       
                                     </Card.Body>
                                 </Card>
+                                </Col>
                             ))}
+                            </Row>
                             </CardDeck>
                             </VenueSection>
                             </Container>
