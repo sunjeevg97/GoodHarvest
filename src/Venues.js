@@ -10,6 +10,7 @@ import Container from 'react-bootstrap/Container';
 import Col from 'react-bootstrap/Col';
 import styled from 'styled-components';
 import Badge from 'react-bootstrap/Badge';
+import * as Icons from 'react-bootstrap-icons';
 
 const Wrapper = styled.section `
     height:100vh;
@@ -39,7 +40,7 @@ export class Venues extends React.Component{
     async componentDidMount() {
         let venues = [];
         let venuesRef = db.collection('venues')
-        let locationRef = await venuesRef.where('location', '==', this.props.location.state.location).get();
+        let locationRef = await venuesRef.where('location', '==', this.props.location.state.location).orderBy('name').get();
         for (const venue of locationRef.docs){
             let name = venue.get('name');
             let location = venue.get('location');
@@ -67,32 +68,32 @@ export class Venues extends React.Component{
             return (
                 <Wrapper>
                       <Row>
-                        <Col md='6'>
+                        <Col>
                             <MapSection>
                                 <MapView/>
                             </MapSection>
                         </Col>
 
-                        <Col md='6'>
+                        <Col>
                         <Container className="overflow-auto">
                           <VenueSection>
-                            <CardDeck>
+                            <CardDeck className='mr-0'>
                                 <Row className='p-3'>
                                 {this.state.venue_data.map((venue,index) => (
-                                    <Col>
+                                    <Col md="4">
                                     <br />
-                                <Card key = {venue.id} border = "primary" style={{width: '18rem' }}>
+                                <Card className = "shadow p-3 mb-5 bg-white rounded" key = {venue.id} style={{width: '18rem' }}>
                                     <Card.Img variant="top" src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2767&q=80" />
                                     <Card.Body>
                                     <Card.Title>{venue.n}</Card.Title>
-                                    <Card.Text>
+                                    <Card.Text className= "shadow-none p-3 mb-5 bg-light rounded">
                                         <ul className="list-unstyled">
-                                        <li><small>Location: {venue.loc}</small></li>
-                                        <li><small>Max Capacity: {venue.cap}</small></li>
-                                        <li><small>Cuisine:{venue.food_type.map((food, x) => (<Badge className="ml-1" variant="dark">{food}</Badge>))}</small></li>
+                                        <li><span><Icons.GeoAlt /></span><small> {venue.loc}</small></li>
+                                        <li><span><Icons.PeopleFill/></span><small> {venue.cap} person max</small></li>
+                                        <li><span><Icons.EggFried/></span><small> {venue.food_type.map((food, x) => (<Badge className="mr-1" variant="dark">{food}</Badge>))}</small></li>
                                         </ul>
                                     </Card.Text>
-                                        <Button variant="primary">Book Your Luau</Button>
+                                        <Button variant="primary">Plan Your Luau</Button>
                                        
                                     </Card.Body>
                                 </Card>
