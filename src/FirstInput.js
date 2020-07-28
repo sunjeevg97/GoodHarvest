@@ -24,7 +24,15 @@ const Background  = styled.img`
     width: 100%;
     background: 'linear-gradient(to right, #430089, #82ffa1)';
 `;
-
+/*const TriangleBottomLeft = styled.div `
+    position: absolute;
+    height: 100vh;
+    width: 55%;
+    top:0;
+    left:0;
+  background-color: #4f5d75;
+  clip-path: polygon(0 0, 0 100%, 100% 100%);
+`;*/
 const Styles = styled.div`
     .jumbotron{
         position: absolute;
@@ -65,13 +73,13 @@ const BgStyles = styled.div`
         background: rgba(0, 0, 0, 0.7); /*can be anything, of course*/
 
 `;
+
 export class FirstInput extends React.Component{
     constructor(props) {
         super(props);
 
-        this.state = {time: '8:00AM', location:'', quantity:'', date: new Date(), redirect: null};
+        this.state = {time: '8:00AM', location:'', date: new Date(), redirect: null};
         this.handleTimeChange = this.handleTimeChange.bind(this);
-        this.handleQuantChange = this.handleQuantChange.bind(this);
         this.handleLocChange = this.handleLocChange.bind(this);
     }
 
@@ -84,17 +92,13 @@ export class FirstInput extends React.Component{
         this.setState({time:event.target.value});
     }
 
-    handleQuantChange (event){
-        this.setState({quantity:event.target.value});
-    }
-
     handleLocChange (event){
         this.setState({location:event.target.value});
     }
 
     handleSubmit = event =>{
         event.preventDefault();
-        if (this.state.quantity && this.state.date && this.state.location && this.state.time){
+        if (this.state.date && this.state.location && this.state.time){
             this.setState({ redirect: "/venues"})
         }
         else{
@@ -127,45 +131,41 @@ export class FirstInput extends React.Component{
         if(this.state.redirect){
             return <Redirect to={{
                 pathname: '/venues',
-                state: {date: this.state.date, time: this.state.time, location: this.state.location, quantity: this.state.quantity}
+                state: {date: this.state.date, time: this.state.time, location: this.state.location}
             }}/>
         }
         return(
             <React.Fragment>
         <Background src={ bgImg } />
+        
         <BgStyles/>
         <Styles>
             <Jumbotron>
                 <Container fluid='lg'>
-                        <h1 className="text-secondary display-5">Book company events</h1>
-                        <h1 className="text-secondary display-5">in minutes on <span className="font-weight-bold">Luau</span></h1>
+                        <h1 className="text-secondary display-5">Get fresh, locally sourced foods </h1>
+                        <h1 className="text-secondary display-5">in minutes on <span className="font-weight-bold">Harvest</span></h1>
                             
                                 <Form onSubmit={this.handleSubmit}>
                                     <Row>
-                                        <Col className="col-6">
+                                        <Col className="col-11">
                                     <Form.Group controlId="formLocation">
                                         <Form.Label className="text-secondary font-weight-bold">Where are you?</Form.Label>
-                                        <InputGroup className="sm float right" >
+                                        <InputGroup className="lg float right" >
                                         <select className="custom-select" id="locationSelect" value={this.state.location} onChange={this.handleLocChange}>
                                         <option selected>Choose Location</option>
-                                        <option value="NYC">New York City</option>
-                                        <option value="LA">Los Angeles</option>
-                                        <option value="DC">Washington D.C.</option>
+                                        <option value="NYC">New York City, NY</option>
+                                        <option value="SEA">Seattle, WA</option>
+                                        <option value="LA">Los Angeles, CA</option>
+                                        <option value="DC">Washington, D.C.</option>
                                      </select>
                                          </InputGroup>                                    </Form.Group>
                                         </Col>
-                                        <Col>
-                                        <Form.Group controlId="formNumAttendes">
-                                        <Form.Label className="text-secondary font-weight-bold">How many are going?</Form.Label>
-                                        <Form.Control placeholder="Number of People" value = {this.state.quantity} onChange = {this.handleQuantChange} />
-                                    </Form.Group>
-                                    </Col>
                                     </Row>
                                     
                                     <Row>
                                         <Col xs={5}>
                                         <Form.Group controlId="formDate">
-                                        <Form.Label className="text-secondary font-weight-bold">Date?</Form.Label>
+                                        <Form.Label className="text-secondary font-weight-bold">When do you want it?</Form.Label>
                                         <InputGroup className="lg" >
                                         <FormControl
                                                 placeholder="mm/dd/yyyy"
@@ -196,7 +196,7 @@ export class FirstInput extends React.Component{
                                     <Col xs={5}>
                                     
                                         <Form.Group controlId="formTime">
-                                        <Form.Label className="text-secondary font-weight-bold">Time?</Form.Label>
+                                        <Form.Label className="text-secondary font-weight-bold">Delivery Time?</Form.Label>
                                         <InputGroup className="sm float right" >
                                         <select className="custom-select" id="timeSelect" value={this.state.time} onChange={this.handleTimeChange}>
                                             {timeList.map((time, i) => <option key = {i} value={time.value}>{time.label}</option>)}
@@ -209,8 +209,8 @@ export class FirstInput extends React.Component{
                                     </Col>
                                     </Row>
 
-                                        <Button variant="primary btn-lg font-weight-bold text-light" type="submit" value="Submit">
-                                            Lets Luau!
+                                        <Button variant="outline-danger btn-lg font-weight-bold" type="submit" value="Submit">
+                                            Find Your Harvest
                                         </Button>
                                     </Form>
                             </Container>

@@ -8,7 +8,7 @@ import { SignIn } from './SignIn';
 import { SignUp } from './SignUp';
 import { Venues } from './Venues';
 import { Navigation } from './components/Navigation';
-
+import { Menu } from './Menu';
 function App() {
   return (
     <React.Fragment>
@@ -16,7 +16,7 @@ function App() {
         <Switch>
         <Route exact path="/" component={FirstInput} />
         <Route path="/venues" component={Venues} />
-        <Route path="/signin" component={SignIn} />
+        <Route path="/menu" component={Menu} />
         <Route path="/signup" component={SignUp} />
         </Switch>
         </Router>

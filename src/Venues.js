@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import { db } from './firebase';
+import { Redirect } from 'react-router-dom';
 import Card from 'react-bootstrap/Card';
 import CardDeck from 'react-bootstrap/CardDeck'
 import Button from 'react-bootstrap/Button';
@@ -12,6 +13,8 @@ import Badge from 'react-bootstrap/Badge';
 import * as Icons from 'react-bootstrap-icons';
 import Spinner from 'react-bootstrap/Spinner';
 import Alert from 'react-bootstrap/Alert';
+import $ from 'jquery';
+
 const Wrapper = styled.section `
     height:100vh;
     width:100%;
@@ -43,10 +46,12 @@ export class Venues extends React.Component{
 
         this.state = {
             venue_data:[],
+            venue_id:'',
             coordinates:[],
             loading: true,
             centered_lat: '', 
-            centered_long: ''
+            centered_long: '',
+            redirect:null
         };
 
     }  
@@ -74,16 +79,14 @@ export class Venues extends React.Component{
         for (const venue of locationRef.docs){
             let name = venue.get('name');
             let location = venue.get('location');
-            let maxcap = venue.get('maxcap');
-            let cuisines = venue.get('cuisines');
+            let types = venue.get('type');
             let lat = venue.get('address').latitude;
             let long = venue.get('address').longitude;
             venues.push({
                 id: venue.id,
                 n: name,
                 loc: location,
-                cap: maxcap,
-                food_type: cuisines
+                stock: types
             });
 
             coor.push({
@@ -100,10 +103,21 @@ export class Venues extends React.Component{
         this.setState({loading: false});
       }
        
+    goPlan(e){
+        this.setState({ redirect: "/menu"})
+        this.setState({venue_id: e.target.id })
+    }
 
     
 
     render(){
+        if(this.state.redirect){
+            return <Redirect to={{
+                pathname: '/menu',
+                state:{venue_id: this.state.venue_id}
+            }}/>
+        }
+
         if(this.state.loading == true){
             console.log('loading');
             return (
@@ -117,6 +131,15 @@ export class Venues extends React.Component{
         }
         else if(this.state.loading == false){
             console.log('loaded');
+            this.state.venue_data.map((venue, index) =>(
+            $(document).ready(function(){
+                $('#' +'venueCard' +index).hover(function () {
+                    $(this).addClass('border-danger shadow ');
+                }, function () {
+                    $(this).removeClass('border-danger shadow ' );
+                });
+            })
+            ));
             return (
                 <Wrapper>
                       <Row>
@@ -130,28 +153,23 @@ export class Venues extends React.Component{
                         <Container className="overflow-auto">
                           <VenueSection>
                             <CardDeck>
-                                <Row className='p-6'>
                                 {this.state.venue_data.map((venue,index) => (
-                                    <Col md="6">
+                                    <Col>
                                     <br />
-                                <Card className = "shadow p-3 mb-5 bg-white rounded" key = {venue.id} style={{width: '18rem' }}>
-                                    <Card.Img variant="top" src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2767&q=80" />
+                                <Card id={`venueCard`+ index} className = "bg-white rounded" key = {venue.id} style={{width: '40rem', height:'10rem'}}>
                                     <Card.Body>
                                     <Card.Title>{venue.n}</Card.Title>
-                                    <Card.Text className= "shadow-none p-3 mb-5 bg-light rounded">
+                                    <Card.Text style= {{height:'5rem'}}>
                                         <ul className="list-unstyled">
                                         <li><span><Icons.GeoAlt /></span><small> {venue.loc}</small></li>
-                                        <li><span><Icons.PeopleFill/></span><small> {venue.cap} person max</small></li>
-                                        <li><span><Icons.EggFried/></span><small> {venue.food_type.map((food, x) => (<Badge className="mr-1" variant="dark">{food}</Badge>))}</small></li>
+                                        <li><span><Icons.EggFried/></span><small> {venue.stock.map((items, x) => (<Badge className="mr-1" variant="dark">{items}</Badge>))}</small></li>
                                         </ul>
                                     </Card.Text>
-                                        <Button variant="primary">Plan Your Luau</Button>
-                                       
+                                    <a href="#" id = {venue.id} class="stretched-link" onClick={e=> this.goPlan(e.target.id)}></a>
                                     </Card.Body>
                                 </Card>
                                 </Col>
                             ))}
-                            </Row>
                             </CardDeck>
                             </VenueSection>
                             </Container>
