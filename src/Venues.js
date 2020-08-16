@@ -98,14 +98,14 @@ export class Venues extends React.Component{
         }
         this.setState({venue_data: venues});
         this.setState({coordinates: coor});
-        console.log(this.state.coordinates)
 
         this.setState({loading: false});
       }
        
-    goPlan(e){
-        this.setState({ redirect: "/menu"})
-        this.setState({venue_id: e.target.id })
+    goToMenu = e =>{
+        var id = e.target.id
+        this.setState({ redirect: "/menu"});
+        this.setState({venue_id: id});
     }
 
     
@@ -114,7 +114,7 @@ export class Venues extends React.Component{
         if(this.state.redirect){
             return <Redirect to={{
                 pathname: '/menu',
-                state:{venue_id: this.state.venue_id}
+                state: {venue_id: this.state.venue_id}
             }}/>
         }
 
@@ -134,9 +134,9 @@ export class Venues extends React.Component{
             this.state.venue_data.map((venue, index) =>(
             $(document).ready(function(){
                 $('#' +'venueCard' +index).hover(function () {
-                    $(this).addClass('border-danger shadow ');
+                    $(this).addClass('border-danger shadow-lg ');
                 }, function () {
-                    $(this).removeClass('border-danger shadow ' );
+                    $(this).removeClass('border-danger shadow-lg ' );
                 });
             })
             ));
@@ -149,7 +149,7 @@ export class Venues extends React.Component{
                             </MapSection>
                         </Col>
 
-                        <Col>
+                        <Col md='6'>
                         <Container className="overflow-auto">
                           <VenueSection>
                             <CardDeck>
@@ -162,10 +162,10 @@ export class Venues extends React.Component{
                                     <Card.Text style= {{height:'5rem'}}>
                                         <ul className="list-unstyled">
                                         <li><span><Icons.GeoAlt /></span><small> {venue.loc}</small></li>
-                                        <li><span><Icons.EggFried/></span><small> {venue.stock.map((items, x) => (<Badge className="mr-1" variant="dark">{items}</Badge>))}</small></li>
+                                        <li><span><Icons.EggFried/></span><small> {venue.stock.map((items, x) => (<Badge className="mr-1" variant="secondary">{items}</Badge>))}</small></li>
                                         </ul>
                                     </Card.Text>
-                                    <a href="#" id = {venue.id} class="stretched-link" onClick={e=> this.goPlan(e.target.id)}></a>
+                                    <a href="#" id = {venue.id} className="stretched-link" onClick={this.goToMenu}></a>
                                     </Card.Body>
                                 </Card>
                                 </Col>

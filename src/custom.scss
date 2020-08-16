@@ -1,13 +1,17 @@
 $theme-colors: (
-  "primary":    #e07a5f,
-  "secondary":  #EEF3DB,
-  "dark": #011627,
-  "info": #00f5d4,
-  "danger":#f15bb5
+  "primary":    #f72585,
+  "secondary":  #003459,
+  "light": #edf0da, 
+  "dark": #424f61,
+  "info": #30d6d9,
+  "danger":#f72585
 );
 
 html,body{
     overflow:hidden;
 }
 
+$font-family-base: 'Varela Round', sans-serif;
+
 @import '~bootstrap/scss/bootstrap.scss';
+@import "~@openfonts/varela-round_all/index.css";

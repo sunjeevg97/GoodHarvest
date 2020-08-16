@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Redirect } from 'react-router-dom';
+import {Navigation} from './components/Navigation';
 import Component from 'react';
 import Calendar from 'react-calendar';
 import styled from 'styled-components';
@@ -24,15 +25,7 @@ const Background  = styled.img`
     width: 100%;
     background: 'linear-gradient(to right, #430089, #82ffa1)';
 `;
-/*const TriangleBottomLeft = styled.div `
-    position: absolute;
-    height: 100vh;
-    width: 55%;
-    top:0;
-    left:0;
-  background-color: #4f5d75;
-  clip-path: polygon(0 0, 0 100%, 100% 100%);
-`;*/
+
 const Styles = styled.div`
     .jumbotron{
         position: absolute;
@@ -137,19 +130,19 @@ export class FirstInput extends React.Component{
         return(
             <React.Fragment>
         <Background src={ bgImg } />
-        
+        <Navigation/>
         <BgStyles/>
         <Styles>
             <Jumbotron>
                 <Container fluid='lg'>
-                        <h1 className="text-secondary display-5">Get fresh, locally sourced foods </h1>
-                        <h1 className="text-secondary display-5">in minutes on <span className="font-weight-bold">Harvest</span></h1>
+                        <h1 className="text-light display-5">Get fresh and locally sourced food in minutes </h1>
+                        <h1 className="text-light display-5"><span className="font-weight-bold"></span></h1>
                             
                                 <Form onSubmit={this.handleSubmit}>
                                     <Row>
                                         <Col className="col-11">
                                     <Form.Group controlId="formLocation">
-                                        <Form.Label className="text-secondary font-weight-bold">Where are you?</Form.Label>
+                                        <Form.Label className="text-light font-weight-bold">Where are you?</Form.Label>
                                         <InputGroup className="lg float right" >
                                         <select className="custom-select" id="locationSelect" value={this.state.location} onChange={this.handleLocChange}>
                                         <option selected>Choose Location</option>
@@ -165,7 +158,7 @@ export class FirstInput extends React.Component{
                                     <Row>
                                         <Col xs={5}>
                                         <Form.Group controlId="formDate">
-                                        <Form.Label className="text-secondary font-weight-bold">When do you want it?</Form.Label>
+                                        <Form.Label className="text-light font-weight-bold">When do you want it?</Form.Label>
                                         <InputGroup className="lg" >
                                         <FormControl
                                                 placeholder="mm/dd/yyyy"
@@ -175,7 +168,7 @@ export class FirstInput extends React.Component{
 
                                         <DropdownButton
                                             as={InputGroup.Append}
-                                            variant="outline-secondary"
+                                            variant="outline-light"
                                             className = "dropup sm"
                                             title= {<FontAwesomeIcon icon={faCalendarAlt}/>}
                                             id="date-dropdown">
@@ -196,7 +189,7 @@ export class FirstInput extends React.Component{
                                     <Col xs={5}>
                                     
                                         <Form.Group controlId="formTime">
-                                        <Form.Label className="text-secondary font-weight-bold">Delivery Time?</Form.Label>
+                                        <Form.Label className="text-light font-weight-bold">Delivery Time?</Form.Label>
                                         <InputGroup className="sm float right" >
                                         <select className="custom-select" id="timeSelect" value={this.state.time} onChange={this.handleTimeChange}>
                                             {timeList.map((time, i) => <option key = {i} value={time.value}>{time.label}</option>)}
@@ -209,7 +202,7 @@ export class FirstInput extends React.Component{
                                     </Col>
                                     </Row>
 
-                                        <Button variant="outline-danger btn-lg font-weight-bold" type="submit" value="Submit">
+                                        <Button variant="outline-primary btn-lg font-weight-bold" type="submit" value="Submit">
                                             Find Your Harvest
                                         </Button>
                                     </Form>
