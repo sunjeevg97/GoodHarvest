@@ -3,6 +3,7 @@ import Component from 'react';
 import { db } from './firebase';
 import styled from 'styled-components';
 import Form from 'react-bootstrap/Form';
+import Container from 'react-bootstrap/Container';
 const Wrapper = styled.section `
     height:100vh;
     width:100%;
@@ -74,6 +75,7 @@ export class Menu extends React.Component{
         console.log(this.state.farm);
             return (
               <div>
+            <Container className="overflow-auto">
             <Form>
                {
                    this.state.farm.map((item)=>
@@ -85,7 +87,7 @@ export class Menu extends React.Component{
                                     <Form.Check 
                                       type={`checkbox`}
                                       id={sub.name}
-                                      label={sub.name}
+                                      label={`${sub.name} $ ${sub.price}`}
                                     />
                                     </div>
                             )}
@@ -94,6 +96,7 @@ export class Menu extends React.Component{
                    )
                 }
                 </Form>
+                </Container>
               </div>
             )
 
