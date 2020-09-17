@@ -1,12 +1,22 @@
 $theme-colors: (
-  "primary":    #Fe615a,
-  "secondary":  #EEF3DB,
-  "dark": #4D6466,
-  "info": #B7D8D6
+  "primary":    #f72585,
+  "secondary":  #003459,
+  "light": #edf0da, 
+  "dark": #424f61,
+  "info": #30d6d9,
+  "danger":#f72585
 );
 
 html,body{
     overflow:hidden;
 }
 
+.btn-primary hover{
+  background: rgb(137,63,251);
+  background: radial-gradient(circle, rgba(137,63,251,1) 0%, rgba(247,37,133,1) 100%);
+}
+
+$font-family-base: 'Varela Round', sans-serif;
+
 @import '~bootstrap/scss/bootstrap.scss';
+@import "~@openfonts/varela-round_all/index.css";
