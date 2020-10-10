@@ -8,7 +8,7 @@ import { Redirect } from 'react-router-dom';
 import {Navigation} from './components/Navigation';
 import Calendar from 'react-calendar';
 import bgImg from './assets/bgImg.jpg';
-// import cfarms from './assets/cfarms.jpg';
+import cfarms from './assets/cfarms.jpg';
 import Jumbotron from 'react-bootstrap/Jumbotron';
 import { Layout } from './components/Layout';
 import Button from 'react-bootstrap/Button';
@@ -28,14 +28,14 @@ const Wrapper = styled.section `
 
 `;
 
-// const Banner  = styled.img`
-//     height: 40vh;
-//     width: 100%;
-//     background-position: center;
-//     background-repeat: no-repeat;
-//     background-size: fill;
-//     position: relative;
-// `;
+const Banner  = styled.img`
+    height: 40vh;
+    width: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: fill;
+    position: relative;
+`;
 
 const BgStyles = styled.div`
 
@@ -68,19 +68,26 @@ const HeaderStyleImg = styled.div`
         font-size: 40em;
         text-align: center;
         color: white;
-        margin: auto;
+        position: absolute;
+        margin:0;
+        top: 50%;
+        left: 50%;
+        margin-right: -50%;
+        transform: translate(-50%, -50%);
 `;
 
 const MenuContainer = styled.div`
-        padding-top: 50px;
         width: 100%;
-        height: 350px;
+        height: 800px;
         background-color: white;
         margin: auto;
+        margin-top: 25px;
+        margin-bottom: 25px;
 `;
 
 const FilterContainer = styled.div`
       display: inline-block;
+      vertical-align: top;
        width: 15%;
        height: 350px;
        background-color: white;
@@ -88,20 +95,35 @@ const FilterContainer = styled.div`
        box-shadow:  20px 20px 60px #d9d9d9,
              -20px -20px 60px #ffffff;
        margin: auto;
-       margin-left: 100px;
+       margin-left: 5%;
+       position: top;
 `;
 
-const BodyContainer = styled.div`
-      display: inline-block;
-       width: 70%;
+const AdditionalContainer = styled.div`
+      display: block;
+      vertical-align: top;
+       width: 15%;
        height: 350px;
        background-color: white;
        border-radius: 50px;
        box-shadow:  20px 20px 60px #d9d9d9,
              -20px -20px 60px #ffffff;
        margin: auto;
-       margin-left: 1%;
-       margin-right: 100px;
+       margin-left: 5%;
+       position: top;
+`;
+
+const BodyContainer = styled.div`
+      display: inline-block;
+       width: 71%;
+       height: 800px;
+       background-color: white;
+       border-radius: 50px;
+       box-shadow:  20px 20px 60px #d9d9d9,
+             -20px -20px 60px #ffffff;
+       margin: auto;
+       margin-left: 3%;
+       margin-right: 5%;
 `;
 
 export class Menu extends React.Component{
@@ -170,8 +192,9 @@ export class Menu extends React.Component{
             return (
               <React.Fragment style={{overflow: 'scroll'}}>
               <Wrapper style={{overflow: 'scroll'}}>
-              <BgStyles><HeaderStyleImg><h1 className = 'd-flex justify-content-center'>Forest Green Park Market</h1></HeaderStyleImg></BgStyles>
-              <MenuContainer><FilterContainer></FilterContainer><BodyContainer></BodyContainer></MenuContainer>
+              <BgStyles><HeaderStyleImg><h1>Forest Green Park Market</h1></HeaderStyleImg></BgStyles>
+              <MenuContainer><FilterContainer></FilterContainer>
+              <BodyContainer></BodyContainer></MenuContainer>
               </Wrapper>
               </React.Fragment>
             )
