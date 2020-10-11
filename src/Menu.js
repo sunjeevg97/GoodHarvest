@@ -8,6 +8,7 @@ import { Redirect } from 'react-router-dom';
 import {Navigation} from './components/Navigation';
 import Calendar from 'react-calendar';
 import bgImg from './assets/bgImg.jpg';
+import cfarms1 from './assets/cfarms1.jpg';
 import cfarms from './assets/cfarms.jpg';
 import Jumbotron from 'react-bootstrap/Jumbotron';
 import { Layout } from './components/Layout';
@@ -36,21 +37,19 @@ const NavBody = styled.div`
     top:25px;
     border-radius: 50px;
     display: inline-block;
+    margin-bottom: 50px;
 `;
 
 const Nav = styled.div `
     height: 50px;
     width: 10%;
     position: relative;
-    background-color: white;
+    background-color: transparent;
     margin-left: 5%;
     border-radius: 50px;
-    border-style: solid;
-    border-width: 1px;
-    border-color: white;
     color:white;
     display: inline-block;
-
+    font-size: 25em;
 }
 `;
 
@@ -58,14 +57,10 @@ const NavRight = styled.div `
     height: 50px;
     width: 10%;
     position: relative;
-    background-color: white;
+    background-color: transparent;
     margin-left: 67.5%;
     margin-right: 5%;
     border-radius: 50px;
-    border-style: solid;
-    border-width: 1px;
-    border-color: white;
-    color:white;
     display: inline-block;
 
 }
@@ -164,18 +159,70 @@ const MenuContainer = styled.div`
         margin-bottom: 25px;
 `;
 
+const FilterBodyCont = styled.div`
+      width: 100%;
+      background-color: transparent;
+      height: 300px;
+      position: relative;
+      overflow: scroll;
+      overflow-y: hidden;
+      overflow-x: scroll;
+      display: inline-block;
+      white-space: nowrap;
+`;
+
 const FilterBody = styled.div`
-        width: 100%;
-        height: auto;
-        background-color: transparent;
+        width: 20%;
+        height: 200px;
+        background-color: white;
         margin: auto;
+        border-radius: 50px;
+        box-shadow:  5px 5px 30px #d9d9d9,
+              -5px -5px 30px #ffffff;
         margin-top: 25px;
         margin-bottom: 25px;
-        overflow-x: scroll;
-        overflow-y: hidden;
-        white-space:nowrap;
-
+        position: relative;
+        display: inline-block;
+        margin-left: 5%;
+        margin-right: 5%;
+        margin-top: 5%;
 `;
+
+const OverLayImg = styled.div`
+        position: fixed; /* Sit on top of the page content */
+        display: none; /* Hidden by default */
+        width: 100%; /* Full width (cover the whole page) */
+        height: 100%; /* Full height (cover the whole page) */
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(0,0,0,0.5); /* Black background with opacity */
+        z-index: 2; /* Specify a stack order in case you're using a different order for other elements */
+        cursor: pointer; /* Add a pointer on hover */
+`;
+
+
+const FarmImg = styled.img`
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: fill;
+      background: 'linear-gradient(to right, #430089, #82ffa1)';
+      width: 20%;
+      height: 200px;
+      margin: auto;
+      border-radius: 50px;
+      box-shadow:  5px 5px 30px #d9d9d9,
+            -5px -5px 30px #ffffff;
+      margin-top: 25px;
+      margin-bottom: 25px;
+      position: relative;
+      display: inline-block;
+      margin-left: 5%;
+      margin-right: 5%;
+      margin-top: 5%;
+`;
+
 
 const FilterContainer = styled.div`
       display: inline-block;
@@ -288,15 +335,19 @@ export class Menu extends React.Component{
                 <Wrapper style={{overflow: 'scroll'}}>
                   <BgStyles>
                   <NavBody>
-                  <Nav></Nav> <NavRight> </NavRight>
+                  <Nav><h1>GoodHarvest</h1></Nav> <NavRight><h1 style={{width: '100%',textAlign: 'center',color:'white',fontSize:'2em'}}>Cart (0)</h1></NavRight>
                   </NavBody>
                       <HeaderStyleImg><h1>Forest Green Park Market</h1></HeaderStyleImg>
                   </BgStyles>
-                <FilterBody>
-                <FilterBar></FilterBar><FilterBarAlt></FilterBarAlt><FilterBarAlt></FilterBarAlt><FilterBarAlt></FilterBarAlt><FilterBarAlt></FilterBarAlt>
-                </FilterBody>
+                <FilterBodyCont>
+                  <FarmImg src={ cfarms } style={{borderStyle:'solid',borderWidth:'2px',borderColor:'green'}} />
+                  <FarmImg src={ cfarms1 } style={{backgroundColor:'rgba(0,0,0,0.5)',opacity:'0.5'}}/>
+                  <FarmImg src={ bgImg } style={{backgroundColor:'rgba(0,0,0,0.5)',opacity:'0.5'}}/>
+                  <FarmImg src={ cfarms } style={{backgroundColor:'rgba(0,0,0,0.5)',opacity:'0.5'}}/>
+                  <FarmImg src={ cfarms } style={{backgroundColor:'rgba(0,0,0,0.5)',opacity:'0.5'}}/>
+                </FilterBodyCont>
                 <MenuContainer>
-                  <FilterContainer></FilterContainer>
+                  <FilterContainer><h1 style={{marginTop:'10%',width:'100%',textAlign:'center',color:'black',fontSize:'2em'}}>Cucino Farms</h1></FilterContainer>
                   <BodyContainer></BodyContainer>
                 </MenuContainer>
                 </Wrapper>
