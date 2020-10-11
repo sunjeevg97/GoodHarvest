@@ -35,7 +35,7 @@ width: 300px;
 height: 300px;
 position: absolute;
 left: 50%;
-top: 50%; 
+top: 50%;
 margin-left: -150px;
 margin-top: -150px;
 `;
@@ -49,12 +49,12 @@ export class Venues extends React.Component{
             venue_id:'',
             coordinates:[],
             loading: true,
-            centered_lat: '', 
+            centered_lat: '',
             centered_long: '',
             redirect:null
         };
 
-    }  
+    }
 
     async componentDidMount() {
 
@@ -94,21 +94,21 @@ export class Venues extends React.Component{
                 latitude: lat,
                 longitude: long
             });
-            
+
         }
         this.setState({venue_data: venues});
         this.setState({coordinates: coor});
 
         this.setState({loading: false});
       }
-       
+
     goToMenu = e =>{
         var id = e.target.id
         this.setState({ redirect: "/menu"});
         this.setState({venue_id: id});
     }
 
-    
+
 
     render(){
         if(this.state.redirect){
@@ -156,7 +156,7 @@ export class Venues extends React.Component{
                                 {this.state.venue_data.map((venue,index) => (
                                     <Col>
                                     <br />
-                                <Card id={`venueCard`+ index} className = "bg-white rounded" key = {venue.id} style={{width: '40rem', height:'10rem'}}>
+                                <Card id={`venueCard`+ index} className = "bg-white rounded" key = {venue.id} style={{width: '40rem', height:'10rem', borderRadius: '50px', boxShadow:'20px 20px 60px #d9d9d9,-20px -20px 60px #ffffff'}}>
                                     <Card.Body>
                                     <Card.Title>{venue.n}</Card.Title>
                                     <Card.Text style= {{height:'5rem'}}>
@@ -180,4 +180,3 @@ export class Venues extends React.Component{
         }
         }
 }
-

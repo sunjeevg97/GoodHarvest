@@ -28,6 +28,83 @@ const Wrapper = styled.section `
 
 `;
 
+const NavBody = styled.div`
+    height: 50px;
+    width: 100%;
+    position: relative;
+    background-color: transparent;
+    top:25px;
+    border-radius: 50px;
+    display: inline-block;
+`;
+
+const Nav = styled.div `
+    height: 50px;
+    width: 10%;
+    position: relative;
+    background-color: white;
+    margin-left: 5%;
+    border-radius: 50px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: white;
+    color:white;
+    display: inline-block;
+
+}
+`;
+
+const NavRight = styled.div `
+    height: 50px;
+    width: 10%;
+    position: relative;
+    background-color: white;
+    margin-left: 67.5%;
+    margin-right: 5%;
+    border-radius: 50px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: white;
+    color:white;
+    display: inline-block;
+
+}
+`;
+
+const FilterBar = styled.div `
+    display: inline-block;
+    height: 200px;
+    width: 20%;
+    position: relative;
+    margin-left: 5%;
+    margin-bottom: 50px;
+    top: 15px;
+    background-color: white;
+    border-radius: 50px;
+    color:white;
+    box-shadow:  5px 5px 30px #d9d9d9,
+          -5px -5px 30px #ffffff;
+
+}
+`;
+const FilterBarAlt = styled.div `
+    display: inline-block;
+    height: 200px;
+    width: 20%;
+    position: relative;
+    margin-left: 3%;
+    margin-bottom: 50px;
+    top: 15px;
+    background-color: white;
+    border-radius: 50px;
+    color:white;
+    box-shadow:  5px 5px 30px #d9d9d9,
+          -5px -5px 30px #ffffff;
+}
+`;
+
+
+
 const Banner  = styled.img`
     height: 40vh;
     width: 100%;
@@ -36,6 +113,8 @@ const Banner  = styled.img`
     background-size: fill;
     position: relative;
 `;
+
+
 
 const BgStyles = styled.div`
 
@@ -85,10 +164,23 @@ const MenuContainer = styled.div`
         margin-bottom: 25px;
 `;
 
+const FilterBody = styled.div`
+        width: 100%;
+        height: auto;
+        background-color: transparent;
+        margin: auto;
+        margin-top: 25px;
+        margin-bottom: 25px;
+        overflow-x: scroll;
+        overflow-y: hidden;
+        white-space:nowrap;
+
+`;
+
 const FilterContainer = styled.div`
       display: inline-block;
       vertical-align: top;
-       width: 15%;
+       width: 20%;
        height: 350px;
        background-color: white;
        border-radius: 50px;
@@ -98,6 +190,8 @@ const FilterContainer = styled.div`
        margin-left: 5%;
        position: top;
 `;
+
+
 
 const AdditionalContainer = styled.div`
       display: block;
@@ -115,7 +209,7 @@ const AdditionalContainer = styled.div`
 
 const BodyContainer = styled.div`
       display: inline-block;
-       width: 71%;
+       width: 66%;
        height: 800px;
        background-color: white;
        border-radius: 50px;
@@ -191,11 +285,21 @@ export class Menu extends React.Component{
 
             return (
               <React.Fragment style={{overflow: 'scroll'}}>
-              <Wrapper style={{overflow: 'scroll'}}>
-              <BgStyles><HeaderStyleImg><h1>Forest Green Park Market</h1></HeaderStyleImg></BgStyles>
-              <MenuContainer><FilterContainer></FilterContainer>
-              <BodyContainer></BodyContainer></MenuContainer>
-              </Wrapper>
+                <Wrapper style={{overflow: 'scroll'}}>
+                  <BgStyles>
+                  <NavBody>
+                  <Nav></Nav> <NavRight> </NavRight>
+                  </NavBody>
+                      <HeaderStyleImg><h1>Forest Green Park Market</h1></HeaderStyleImg>
+                  </BgStyles>
+                <FilterBody>
+                <FilterBar></FilterBar><FilterBarAlt></FilterBarAlt><FilterBarAlt></FilterBarAlt><FilterBarAlt></FilterBarAlt><FilterBarAlt></FilterBarAlt>
+                </FilterBody>
+                <MenuContainer>
+                  <FilterContainer></FilterContainer>
+                  <BodyContainer></BodyContainer>
+                </MenuContainer>
+                </Wrapper>
               </React.Fragment>
             )
 
