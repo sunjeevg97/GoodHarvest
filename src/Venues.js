@@ -104,8 +104,8 @@ export class Venues extends React.Component{
       }
        
     goToMenu = e =>{
-        var name = e.target.name
-        var id = e.target.id
+        var name = e.target.name;
+        var id = e.target.id;
         this.setState({ redirect: "/menu"});
         this.setState({venue_id: id, venue_name:name});
     }
