@@ -2,7 +2,6 @@ import React, {useState} from 'react';
 import { db } from './firebase';
 import { Redirect } from 'react-router-dom';
 import Card from 'react-bootstrap/Card';
-import CardDeck from 'react-bootstrap/CardDeck'
 import Button from 'react-bootstrap/Button';
 import Row from 'react-bootstrap/Row';
 import MapView from './components/MapView';
@@ -47,6 +46,7 @@ export class Venues extends React.Component{
         this.state = {
             venue_data:[],
             venue_id:'',
+            venue_name:'',
             coordinates:[],
             loading: true,
             centered_lat: '', 
@@ -103,18 +103,20 @@ export class Venues extends React.Component{
       }
        
     goToMenu = e =>{
-        var id = e.target.id
+        var name = e.target.name;
+        var id = e.target.id;
         this.setState({ redirect: "/menu"});
-        this.setState({venue_id: id});
+        this.setState({venue_id: id, venue_name:name});
     }
 
     
 
     render(){
         if(this.state.redirect){
+           
             return <Redirect to={{
                 pathname: '/menu',
-                state: {venue_id: this.state.venue_id}
+                state: {venue_id: this.state.venue_id, venue_name: this.state.venue_name}
             }}/>
         }
 
@@ -152,7 +154,6 @@ export class Venues extends React.Component{
                         <Col md='6'>
                         <Container className="overflow-auto">
                           <VenueSection>
-                            <CardDeck>
                                 {this.state.venue_data.map((venue,index) => (
                                     <Col>
                                     <br />
@@ -165,12 +166,11 @@ export class Venues extends React.Component{
                                         <li><span><Icons.EggFried/></span><small> {venue.stock.map((items, x) => (<Badge className="mr-1" variant="secondary">{items}</Badge>))}</small></li>
                                         </ul>
                                     </Card.Text>
-                                    <a href="#" id = {venue.id} className="stretched-link" onClick={this.goToMenu}></a>
+                                    <a href="#" name = {venue.n} id = {venue.id} className="stretched-link" onClick={this.goToMenu}></a>
                                     </Card.Body>
                                 </Card>
                                 </Col>
                             ))}
-                            </CardDeck>
                             </VenueSection>
                             </Container>
                         </Col>
