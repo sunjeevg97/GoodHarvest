@@ -6,7 +6,6 @@ import Container from 'react-bootstrap/Container';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import Tab from 'react-bootstrap/Tab';
-import CardDeck from 'react-bootstrap/CardGroup';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 
@@ -268,13 +267,12 @@ export class Menu extends React.Component{
   showMenu = e => {
       var venueName = e.target.name;
 
+      console.log(venueName);
 
   }
 
     render(){
         
-        console.log(this.state.market_name);
-        console.log(this.state.farm);
             return (
                 <React.Fragment style={{overflow: 'scroll'}}>
                 <Wrapper style={{overflow: 'scroll'}}>
@@ -287,21 +285,21 @@ export class Menu extends React.Component{
 
                     <FarmLabelSection>
                     <div class="row flex-row flex-nowrap">
-                        <CardDeck>
+                        
                                 {this.state.farm.map((item) => (
                                 <Col>
                                 <Card className = "bg-white rounded shadow rounded-lg" style={{padding:'10px', height:'200px', width: '18rem'}}>
                                     <Card.Body>
-                                    <Card.Title>{item.name}</Card.Title>
-                                    <Card.Text >
-                                        
+                                    <Card.Title></Card.Title>
+                                    <Card.Text>
+                                        <h3>{item.name}</h3>
                                     </Card.Text>
                                     <a href="#" name = {item.name} className="stretched-link" onClick = {this.showMenu}></a>
                                     </Card.Body>
                                 </Card>
                                 </Col>    
                             ))}
-                        </CardDeck>
+                        
                     </div>
                     </FarmLabelSection>
                     
@@ -309,7 +307,7 @@ export class Menu extends React.Component{
                     
                     <div class="row flex-row flex-nowrap">
                     <MenuContainer>
-                    <CardDeck>
+                    
                                 <Col>
                                 <Card className = "bg-white rounded shadow rounded-lg" style={{padding:'20px', height:'350px', width: '18rem'}}>
                                     <Card.Body>
@@ -332,7 +330,6 @@ export class Menu extends React.Component{
                                     </Card.Body>
                                 </Card>
                                 </Col>  
-                        </CardDeck> 
                     </MenuContainer>       
                     </div>
 

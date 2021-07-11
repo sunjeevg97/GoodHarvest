@@ -2,7 +2,6 @@ import React, {useState} from 'react';
 import { db } from './firebase';
 import { Redirect } from 'react-router-dom';
 import Card from 'react-bootstrap/Card';
-import CardDeck from 'react-bootstrap/CardDeck'
 import Button from 'react-bootstrap/Button';
 import Row from 'react-bootstrap/Row';
 import MapView from './components/MapView';
@@ -155,7 +154,6 @@ export class Venues extends React.Component{
                         <Col md='6'>
                         <Container className="overflow-auto">
                           <VenueSection>
-                            <CardDeck>
                                 {this.state.venue_data.map((venue,index) => (
                                     <Col>
                                     <br />
@@ -173,7 +171,6 @@ export class Venues extends React.Component{
                                 </Card>
                                 </Col>
                             ))}
-                            </CardDeck>
                             </VenueSection>
                             </Container>
                         </Col>
